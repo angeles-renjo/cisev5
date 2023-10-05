@@ -12,16 +12,15 @@ const ArticleDetails = () => {
 
   const fetchResults = async () => {
     setLoading(true);
-
     try {
       let response;
       if (searchType === "title") {
         response = await fetch(
-          `https://cisev5-139jfv7uv-my-team-6b67d362.vercel.app/article/title/${title}`
+          `https://cisev5.vercel.app/article/title/${title}`
         );
       } else {
         response = await fetch(
-          `https://cisev5-139jfv7uv-my-team-6b67d362.vercel.app/article/year/${startYear}/${endYear}`
+          `https://cisev5.vercel.app/article/year/${startYear}/${endYear}`
         );
       }
       if (response.ok) {

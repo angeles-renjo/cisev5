@@ -19,7 +19,7 @@ const NewDiscussion = () => {
     // Your fetch logic here
     try {
       const response = await fetch(
-        "https://cisev5-139jfv7uv-my-team-6b67d362.vercel.app/article/submit",
+        `https://cisev5.vercel.app//article/submit`,
         {
           method: "POST",
           headers: {
