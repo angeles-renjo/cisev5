@@ -16,10 +16,10 @@ const ArticleDetails = () => {
     try {
       let response;
       if (searchType === "title") {
-        response = await fetch(`https://cise-backend-murex.vercel.app/article/title/${title}`);
+        response = await fetch(`https://cisev5.vercel.app/article/title/${title}`);
       } else {
         response = await fetch(
-          `https://cise-backend-murex.vercel.app/article/year/${startYear}/${endYear}`
+          `https://cisev5.vercel.app/article/year/${startYear}/${endYear}`
         );
       }
       if (response.ok) {
