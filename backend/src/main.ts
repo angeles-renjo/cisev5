@@ -13,10 +13,7 @@ async function bootstrap() {
   );
 
   app.use((req, res, next) => {
-    res.header(
-      'Access-Control-Allow-Origin',
-      'https://cisev5-g8w8-837zad14z-my-team-6b67d362.vercel.app/',
-    );
+    res.header('Access-Control-Allow-Origin', 'https://cisev5.vercel.app/');
     res.header(
       'Access-Control-Allow-Headers',
       'Origin, X-Requested-With, Content-Type, Accept',
