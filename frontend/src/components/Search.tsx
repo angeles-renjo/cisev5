@@ -17,11 +17,11 @@ const ArticleDetails = () => {
       let response;
       if (searchType === "title") {
         response = await fetch(
-          `https://cisev5-d0c9aa4bd-my-team-6b67d362.vercel.app/article/title/${title}`
+          `https://cisev5-139jfv7uv-my-team-6b67d362.vercel.app/article/title/${title}`
         );
       } else {
         response = await fetch(
-          `https://cisev5-d0c9aa4bd-my-team-6b67d362.vercel.app/article/year/${startYear}/${endYear}`
+          `https://cisev5-139jfv7uv-my-team-6b67d362.vercel.app/article/year/${startYear}/${endYear}`
         );
       }
       if (response.ok) {
