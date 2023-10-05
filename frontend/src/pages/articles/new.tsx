@@ -18,24 +18,21 @@ const NewDiscussion = () => {
     event.preventDefault();
     // Your fetch logic here
     try {
-      const response = await fetch(
-        `https://cisev5.vercel.app//article/submit`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title,
-            authors,
-            source,
-            year: pubYear,
-            doi,
-            summary,
-            //linked_discussion: linkedDiscussion,
-          }),
-        }
-      );
+      const response = await fetch(`https://cisev5.vercel.app/article/submit`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          authors,
+          source,
+          year: pubYear,
+          doi,
+          summary,
+          //linked_discussion: linkedDiscussion,
+        }),
+      });
 
       if (response.ok) {
         const responseData = await response.json();
