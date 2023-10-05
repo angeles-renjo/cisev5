@@ -14,8 +14,6 @@ const NewDiscussion = () => {
 
   const submitNewArticle = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    event.preventDefault();
     // Your fetch logic here
     try {
       const response = await fetch(`https://cisev5.vercel.app/article/submit`, {
