@@ -9,8 +9,13 @@ import {
 } from '@nestjs/common';
 
 import { ArticleService } from './article.service';
+import { RolesGuard } from 'guards/roles.guard';
+import { Roles } from 'user/roles.decorator';
+import { JwtAuthGuard } from 'guards/jwt-auth.guard';
+import { Role } from '../user/role.enum';
 
 @Controller('article')
+@UseGuards(JwtAuthGuard, RolesGuard) // Use JwtAuthGuard here
 export class ArticleController {
   constructor(private readonly articleService: ArticleService) {}
 
@@ -40,6 +45,7 @@ export class ArticleController {
   }
 
   //vist website /hello
+  @Roles(Role.Admin)
   @Get('/hello')
   getHello(@Request() req): string {
     return 'hello';
