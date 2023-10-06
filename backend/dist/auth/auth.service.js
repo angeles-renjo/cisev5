@@ -21,17 +21,22 @@ let AuthService = class AuthService {
     async validateUser(username, pass) {
         const user = await this.usersService.findOne(username);
         if (user && user.password === pass) {
-            return true;
+            const { password, ...result } = user;
+            return result;
         }
         return null;
     }
     async login(user) {
-        console.log(user);
+        const isValid = await this.validateUser(user.username, user.password);
+        if (!isValid) {
+            throw new common_1.UnauthorizedException();
+        }
         const payload = { username: user.username, sub: user._id };
         return {
             access_token: this.jwtService.sign(payload),
             message: `Welcome, ${user.username}!`,
-            role: `${user.role}`,
+            role: user.role,
+            password: user.password,
         };
     }
 };
