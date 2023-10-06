@@ -15,6 +15,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ArticleController = void 0;
 const common_1 = require("@nestjs/common");
 const article_service_1 = require("./article.service");
+const roles_guard_1 = require("../guards/roles.guard");
+const roles_decorator_1 = require("../user/roles.decorator");
+const jwt_auth_guard_1 = require("../guards/jwt-auth.guard");
+const role_enum_1 = require("../user/role.enum");
 let ArticleController = class ArticleController {
     constructor(articleService) {
         this.articleService = articleService;
@@ -73,6 +77,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ArticleController.prototype, "addArticle", null);
 __decorate([
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
     (0, common_1.Get)('/hello'),
     __param(0, (0, common_1.Request)()),
     __metadata("design:type", Function),
@@ -96,6 +101,7 @@ __decorate([
 ], ArticleController.prototype, "getArticlesByYearRange", null);
 exports.ArticleController = ArticleController = __decorate([
     (0, common_1.Controller)('article'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     __metadata("design:paramtypes", [article_service_1.ArticleService])
 ], ArticleController);
 //# sourceMappingURL=article.controller.js.map

@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 
 const PopulatedNavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const [role, setRole] = useState<string | null>("");
   useEffect(() => {
     const checkScreenSize = () => {
       if (window.innerWidth >= 650) {
@@ -22,6 +22,9 @@ const PopulatedNavBar = () => {
 
     // Add event listener for window resize
     window.addEventListener("resize", checkScreenSize);
+
+    // Get the user's role from local storage
+    setRole(localStorage.getItem("role"));
 
     // Cleanup function to remove event listener on component unmount
     return () => window.removeEventListener("resize", checkScreenSize);
@@ -43,9 +46,13 @@ const PopulatedNavBar = () => {
           <NavItem route="/" end>
             Home
           </NavItem>
-          <NavItem route="/moderator" end>
-            Moderator
-          </NavItem>
+          {/* Other NavItems */}
+          {role === "admin" && (
+            <NavItem route="/moderator" end>
+              Moderator
+            </NavItem>
+          )}
+
           <NavItem route="/admin" end>
             Admin
           </NavItem>

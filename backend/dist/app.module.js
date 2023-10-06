@@ -13,6 +13,8 @@ const app_service_1 = require("./app.service");
 const mongoose_1 = require("@nestjs/mongoose");
 const article_module_1 = require("./articles/article.module");
 const dotenv = require("dotenv");
+const user_module_1 = require("./user/user.module");
+const auth_module_1 = require("./auth/auth.module");
 dotenv.config();
 const OLD_PASSWORD = process.env.OLD_PASSWORD;
 let AppModule = class AppModule {
@@ -22,6 +24,8 @@ exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             article_module_1.ArticleModule,
+            auth_module_1.AuthModule,
+            user_module_1.UsersModule,
             mongoose_1.MongooseModule.forRoot(`mongodb+srv://user1:wO7OY6V0vzwUNEAn@cluster0.yfilps9.mongodb.net/?retryWrites=true&w=majority`),
         ],
         controllers: [app_controller_1.AppController],
