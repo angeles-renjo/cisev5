@@ -5,6 +5,7 @@ export declare class AuthController {
     login(req: any): Promise<{
         access_token: string;
         message: string;
-        role: string;
+        role: any;
+        password: any;
     }>;
 }
