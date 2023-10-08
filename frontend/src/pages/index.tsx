@@ -1,8 +1,8 @@
 import React from "react";
-import ArticleDetails from "@/components/Search";
+import ArticleDetails from "@/pages/search";
 import "../styles/index.scss";
 import Footer from "@/components/nav/Footer";
-import Login from "@/components/Login";
+import Login from "@/pages/login";
 
 export default function Home() {
   return (
@@ -10,8 +10,6 @@ export default function Home() {
       <h1 className="text-white text-center text-3xl font-bold my-8">
         Welcome to Speed
       </h1>
-      {/* <ArticleDetails /> */}
-      <Login />
       <Footer />
     </div>
   );
