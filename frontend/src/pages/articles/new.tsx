@@ -2,6 +2,7 @@ import { FormEvent, useState, useEffect } from "react";
 import formStyles from "../../styles/Form.module.scss";
 import swal from "sweetalert";
 import withAuth from "@/hoc/withAuth";
+import useAuth from "@/hooks/useAuth";
 
 const NewDiscussion = () => {
   const [title, setTitle] = useState("");
@@ -13,6 +14,8 @@ const NewDiscussion = () => {
   const [linkedDiscussion, setLinkedDiscussion] = useState("");
   const [responseMessage, setResponseMessage] = useState<string | null>(null);
 
+  const token = useAuth();
+
   const submitNewArticle = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -23,6 +26,7 @@ const NewDiscussion = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           title,
