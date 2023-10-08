@@ -3,8 +3,8 @@ import ArticleDetails from "@/pages/search";
 import "../styles/index.scss";
 import Footer from "@/components/nav/Footer";
 import Login from "@/pages/login";
-
-export default function Home() {
+import withAuth from "@/hoc/withAuth";
+function Home() {
   return (
     <div className="flex flex-col">
       <h1 className="text-white text-center text-3xl font-bold my-8">
@@ -14,3 +14,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default withAuth(Home);
