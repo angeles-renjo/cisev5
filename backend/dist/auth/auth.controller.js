@@ -20,17 +20,24 @@ let AuthController = class AuthController {
     constructor(authService) {
         this.authService = authService;
     }
-    async login(req) {
-        return this.authService.login(req.user);
+    async login(req, res) {
+        const jwt = await this.authService.login(req.user);
+        res.cookie('token', jwt, {
+            sameSite: 'none',
+            secure: true,
+            maxAge: 24 * 60 * 60 * 1000,
+        });
+        res.json({ message: 'Logged in' });
     }
 };
 exports.AuthController = AuthController;
 __decorate([
     (0, common_1.UseGuards)(local_auth_guard_1.LocalAuthGuard),
     (0, common_1.Post)('login'),
-    __param(0, (0, common_1.Request)()),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Res)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "login", null);
 exports.AuthController = AuthController = __decorate([
