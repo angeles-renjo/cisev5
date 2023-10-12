@@ -1,5 +1,8 @@
+import withAuth from "@/hoc/withAuth";
+import { parseCookies } from "nookies";
 import { useState } from "react";
 import swal from "sweetalert";
+import useAuth from "@/hooks/useAuth";
 
 const ArticleDetails = () => {
   const [searchType, setSearchType] = useState("title");
@@ -10,17 +13,26 @@ const ArticleDetails = () => {
   const [loading, setLoading] = useState(false);
   const [searchPerformed, setSearchPerformed] = useState(false); // New state variable
 
+  const token = useAuth();
+
   const fetchResults = async () => {
     setLoading(true);
+    const cookies = parseCookies();
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+
     try {
       let response;
       if (searchType === "title") {
-        response = await fetch(
-          `https://cisev5.vercel.app/article/title/${title}`
-        );
+        response = await fetch(`http://localhost:8000/article/title/${title}`, {
+          headers,
+        });
       } else {
         response = await fetch(
-          `https://cisev5.vercel.app/article/year/${startYear}/${endYear}`
+          `http://localhost:8000/article/year/${startYear}/${endYear}`,
+          { headers }
         );
       }
       if (response.ok) {
@@ -141,4 +153,4 @@ const ArticleDetails = () => {
   );
 };
 
-export default ArticleDetails;
+export default withAuth(ArticleDetails);

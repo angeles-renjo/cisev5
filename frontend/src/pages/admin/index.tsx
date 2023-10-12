@@ -1,4 +1,6 @@
-import AuthProtected from "@/components/authProtrected";
+
+import withAuth from "@/hoc/withAuth";
+
 
 function Admin() {
   return (
@@ -8,4 +10,4 @@ function Admin() {
   );
 }
 
-export default AuthProtected(Admin);
+export default withAuth(Admin);
