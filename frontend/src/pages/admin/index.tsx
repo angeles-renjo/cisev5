@@ -1,4 +1,6 @@
+
 import withAuth from "@/hoc/withAuth";
+
 
 function Admin() {
   return (
@@ -7,4 +9,5 @@ function Admin() {
     </div>
   );
 }
+
 export default withAuth(Admin);
