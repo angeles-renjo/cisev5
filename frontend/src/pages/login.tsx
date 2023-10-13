@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
 import { useRouter } from "next/router";
-import "../../app/globals.css";
+import "@/app/globals.css";
 
 export default function Login() {
   const [username, setUsername] = useState("");
